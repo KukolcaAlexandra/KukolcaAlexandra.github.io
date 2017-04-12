@@ -241,7 +241,7 @@ level2.prototype = {
 
 	    //  Player physics properties. Give the little guy a slight bounce.
 	    player.body.bounce.y = 0.2;
-	    player.body.gravity.y = 400;
+	    player.body.gravity.y = 300;
 	   
 	    player.body.collideWorldBounds = true;
 
