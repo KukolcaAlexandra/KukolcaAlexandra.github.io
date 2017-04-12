@@ -95,17 +95,17 @@ level1.prototype = {
 	    var j = 0;
 	    //this.addPlatform(i++,0,x, 1, 1, true); 
 	    //console.log("heightIce = " + heightIce[j]);
-	    this.ice[i] = platforms.create(x, window.outerHeight - /*heightIce[j]*/320, str[j]);
+	    this.ice[i] = platforms.create(x, this.game.world.height - /*heightIce[j]*/320, str[j]);
 	    x += widthIce[j] + interval + 50;//randomInteger(0, 100);
 	    this.ice[i++].body.immovable = true;
 
 	    j = 1;
-	    this.ice[i] = platforms.create(x, window.outerHeight - 320, str[j]);
+	    this.ice[i] = platforms.create(x, this.game.world.height - 320, str[j]);
 	    x += widthIce[j] + interval + 80;
 	    this.ice[i++].body.immovable = true;
 
 	    j = 2;
-	    this.ice[i] = platforms.create(x, window.outerHeight - 320, str[j]);
+	    this.ice[i] = platforms.create(x, this.game.world.height - 320, str[j]);
 	    x += widthIce[j] + interval + 70;
 	    this.ice[i++].body.immovable = true;
 
