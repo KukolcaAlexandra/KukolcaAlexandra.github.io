@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
+    <style>
+        body {
+            margin-left: 400px;
+            background: #76ABA9 url("assets/logo2.png") no-repeat top left;
+            //text-transform: capitalize;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 100%;
+            //color: gray;
+        }
+
+        .center_div {
+            //border: 1px solid gray;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
+            width: 80%;
+            //background-color: #d0f0f6;
+            text-align: left;
+            padding: 8px;
+        }
+
+        .center_div::after {
+            content: '';
+            display: block;
+            //clear: both;
+        }
+
+        .img {
+            width: 23%;
+            margin: 5px;
+            //margin-bottom: 20px;
+            float: right;
+            border: 1px solid gray;
+        }
+
+        .photos {
+            margin-left: 0px;
+            margin-right: 100px;
+            margin-bottom: 10px;
+            width: 80%;
+            //background-color: #d0f0f6;
+            text-align: right;
+            //width: 1000px;
+            //height: 600px;
+            //padding: 8px;
+        }
+
+        .photos::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        p {
+            font-size: 1em;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+
+        .text {
+            margin-right: 120px;
+        }
+
+        header {
+            font-size: 0.875em;
+            margin-top: 60px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <section class="center_div">
+        <h1>Penguin Po</h1>
+        <p>Behavior Interactive</p>
+        <p>3+</p>
+    </section>
+    <section class="photos">
+        <div>
+            <img class="img" src="assets/level11.bmp">
+        </div>
+        <div>
+            <img class="img" src="assets/level12.bmp">
+        </div>
+        <div>
+            <img class="img" src="assets/level21.bmp">
+        </div>
+        <div>
+            <img class="img" src="assets/level22.bmp">
+        </div>
+    </section>
+    <section class="text">
+        <p>This is a game about the fascinating adventure of a penguin named Po on the coastal waters of the Antarctic.
+        Help Po overcome all the dangers on his long journey.</p>
+    </section>
+
+    <section class="text">
+        <h3>Control</h3>
+        <p>To move forward and backward, use the "right" and "left" buttons accordingly. To jump click the button "up". Penguin should not fall into the water. To jump over the water, press the button "up" and "right" or "left" together.</p>
+    </section>
+
+    <header>
+        Created by Kukolca Alexandra
+    </header>
+
+</body>
+</html>
