@@ -1,0 +1,241 @@
+body {
+	margin:0;
+    padding:0;
+    //margin-left: 400px;
+    //background: #76ABA9 url("assets/logo2.png") no-repeat top left;
+    //text-transform: capitalize;
+    background: #76ABA9;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    min-height: 100%;
+    height: auto;
+    position: relative;
+    color: #555555;
+    //margin: 20px;
+    //color: gray;
+}
+
+.logo{
+	float:left;
+	width:360px;
+	//width: 30%;
+	height:320px;
+	margin: 30px;
+	box-sizing: border-box;
+}
+
+h2{	
+	font-size: 36px;
+	text-align: center;
+}
+
+.game_name{
+	padding-left: 35px;
+	font-size: 36px;
+	display: inline-block;
+	width: 50%;
+	box-sizing: border-box;
+	text-align: left;
+}
+
+.game_name h2{
+	text-align: left;
+}
+
+.age{
+	width: 40px;
+	height: 40px;
+	border: 4px solid #555555;
+	border-radius: 50%;
+	//font-size: 1em;
+	text-align: center;
+	padding: 5px;
+	//display: inline-block;
+	margin-bottom: 35px;
+	font-weight: bold;
+}
+
+hr {
+    border: none; /* Убираем границу */
+    background-color: #555555; /* Цвет линии */
+    height: 2px; /* Толщина линии */
+    //width: 80%;
+    clear: both;
+    margin: 50px 0;
+ }
+
+.button {
+    background-color: #555555;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 40px 20px;
+    padding: 15px 45px;
+    cursor: pointer;
+    border-radius: 45%;
+    //width: 100;
+}
+
+.play {
+    display: inline-block;
+    //margin-top: 25;
+    margin-bottom: 40px;
+    margin-right: 70px;
+    padding: 15px 0;
+    width: 200px;
+    text-align: center;
+    font-size: 26px;
+    //text-transform: uppercase;
+    background-color: #555555;
+    border-radius: 45%;
+    text-decoration: none;
+    color: #ffffff;
+  
+}
+
+normalize.min.css:1
+a {
+    background-color: transparent;
+}
+/*.button::after {
+    content: '';
+    display: block;
+    clear: both;
+}*/
+
+
+.photos div{
+    //margin-left: 0px;
+    //margin-right: 100px;
+    //margin-bottom: 10px;
+    width: 100%;
+    
+    //background-color: #d0f0f6;
+    //text-align: right;
+    //width: 1000px;
+    //height: 600px;
+    //padding: 8px;
+
+
+}
+/*
+.first_foto{
+	float: left;
+}*/
+
+.img {
+    width: 32%;
+    margin: 5px;
+    //margin-bottom: 20px;
+    float: left;
+    border: 1px solid gray;
+}
+
+.text {
+    //margin-right: 120px;
+    //clear: both;
+    margin-top: 40px;
+    font-size: 26px;
+    margin: 0 50px;
+}
+
+.after_img{
+	//border: none; /* Убираем границу */
+    //background-color: #555555; /* Цвет линии */
+    height: 10px; /* Толщина линии */
+    //width: 80%;
+    clear: both;
+    //margin: 100px 50px;
+    //font-size: 36px;
+}
+
+.control_title{
+	//margin: 0 100px;
+}
+
+section{
+	margin: 0 100px;
+}
+
+.last_section{
+	//margin-bottom: 75px;
+	padding-bottom: 150px;
+}
+/*.img::after{
+	content: '';
+	display: block;
+	clear: both;
+}*/
+/*.center_div {
+    //border: 1px solid gray;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    width: 80%;
+    //background-color: #d0f0f6;
+    text-align: left;
+    padding: 8px;
+}    
+/*.center_div::after {
+    content: '';
+    display: block;
+    //clear: both;
+}
+.img {
+    width: 23%;
+    margin: 5px;
+    //margin-bottom: 20px;
+    float: right;
+    border: 1px solid gray;
+}
+.photos {
+    margin-left: 0px;
+    margin-right: 100px;
+    margin-bottom: 10px;
+    width: 80%;
+    //background-color: #d0f0f6;
+    text-align: right;
+    //width: 1000px;
+    //height: 600px;
+    //padding: 8px;
+}
+.photos::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+p {
+    font-size: 1em;
+    line-height: 1.8;
+    letter-spacing: 1px;
+}
+.text {
+    margin-right: 120px;
+}*/
+
+
+footer {
+	padding: 15px;
+	background: #2f5572;
+	color: #bfbfbf;
+	position: absolute;
+	bottom: 0;
+	height: 75px;
+	box-sizing: border-box;
+	width: 100%;
+	text-align: center;
+	font-size: 0;
+	//display: inline-block;
+	//padding-bottom: 20px;
+}
+
+footer p{
+	font-size: 16px;
+	//line-height: 75px;
+	//vertical-align: top;
+	//display: inline-block;
+}
