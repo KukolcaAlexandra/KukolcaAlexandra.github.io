@@ -8,11 +8,10 @@
 		<script src="js/gametitle.js"></script>
 		<script src="js/level1.js"></script>
 		<script src="js/level2.js"></script>
-		<!--<script src="js/gameover.js"></script>-->
-    		<style>
+			<style>
     			body{
     				margin:0;
-    				background-color: lightblue;
+    				//background-color: lightblue;
     			}
     			
     		</style>
@@ -24,8 +23,9 @@
 				game.state.add("GameTitle",gameTitle);
 				game.state.add("Level1",level1);
 				game.state.add("Level2",level2);
-				//game.state.add("GameOver",gameOver);
+				
 				game.state.start("Boot");
+				
 			})();    
 		</script>
     </head>

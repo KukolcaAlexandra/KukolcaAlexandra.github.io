@@ -1,0 +1,32 @@
+body {
+        margin-left: 200px;
+        background: #5d9ab2 url("img_tree.png") no-repeat top left;
+        min-height: 100%;
+        position: relative;
+}
+
+a {
+	text-decoration: none;
+}
+
+.main-content {
+	height: auto;
+	min-height: 100%;
+} 
+
+.main {
+	padding: 80px 0 204px;
+}
+
+footer {
+	
+	//height: 204px;
+	//margin-top: -204px;
+	//background: #202628;
+	background-color: #2f5572;
+	color: #bfbfbf;
+	bottom: 0;
+	height: 45px;
+	box-sizing: border-box;
+	width: 100%;
+}
