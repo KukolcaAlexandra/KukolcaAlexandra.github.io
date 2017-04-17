@@ -22,7 +22,7 @@ preload.prototype = {
         this.game.load.image('shell3', 'assets/star.png');
 	
     	this.game.load.image('front1', 'assets/front.png');
-        this.game.load.image('mid1', 'assets/mid2.png');
+        this.game.load.image('mid1', 'assets/mid.png');
         this.game.load.image('back1', 'assets/backLev1.png');
 
         this.game.load.image('back2', 'assets/back2.png');
