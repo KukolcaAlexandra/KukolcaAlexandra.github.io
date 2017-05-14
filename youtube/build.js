@@ -293,7 +293,7 @@ function displayPages(data) {
 
 	let width = document.documentElement.clientWidth;
 	//curWidth = width;
-
+	alert(width);
 	if (data) {
 		if (width >= 1080) {
 			//console.log(">=1080 " + width);
