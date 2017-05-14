@@ -856,7 +856,11 @@ function onTouchStart(event) {
 	//startX = event.clientX;
 	console.log("onTouchStart " + touches[0].pageX);
 	startX = touches[0].pageX;
-	//alert("touch");
+	let input = document.getElementById('query');
+	if (input === touches[0].target) {
+		input.focus();
+		//alert("input");
+	}
 }
 
 function onTouchEnd(event) {
