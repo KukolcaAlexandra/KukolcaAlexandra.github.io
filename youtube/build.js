@@ -73,121 +73,64 @@
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__data__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__display__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__display___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__display__);
 /* harmony export (immutable) */ __webpack_exports__["a"] = search;
 
-//let displayPages = require('./display');
 
 
 
 let nextPage;
 let totalResults;
 
-//module.exports = function(query, part){
 function search(query, data = null) {
-	//debugger;
-	//alert('Welcome ' + query);
-	console.log("query = " + query);
-	//data = null;
-	console.log("data = " + data);
+
 	let nextPageToken = '';
 	if (data !== null) {
-		//alert('data!==null ' + data.nextPage);
 		if (data.nextPage) {
 			nextPageToken = 'pageToken=' + data.nextPage + '&';
-			//alert(nextPageToken);
 		}
 	}
 
 	let url = 'https://www.googleapis.com/youtube/v3/search?' + 'key=AIzaSyAafHK96EJVPRf0K2ityqqQqMTZxEMOWWw&' + 'type=video&' + 'part=snippet&' + 'maxResults=15&' + nextPageToken + 'q=' + query;
-	httpGet(url).then(
-	//response => alert(`Fulfilled: ${response}`),
-	response => {
-		//alert(response);
+	httpGet(url).then(response => {
 		let url = createURL(response);
-		//console.log("response = " + response);
-		//console.log("url = " + url);
 		if (url) {
 			return httpGet(url);
-			console.log("url = " + url);
 		}
-		console.log("url = null");
 		return null;
-	}, error => alert(`Rejected: ${error}`))
-	//;
-
-	//httpGet(url)
-	/*.then(
- 	response => {
- 		console.log("All done");
- 		return httpGet(url);
- 		//console.log("response " + response);
- 		//parseResult(response);
- 		//httpGet(url);
- 	},
- 	error => alert(`Rejected: ${error}`)
- )*/
-	.then(response => {
-		//console.log("response " + response);
-		console.log("data in then = " + data);
+	}, error => alert(`Rejected: ${error}`)).then(response => {
 		handlingResponse(response, query, data);
-		//parseResult(response);
 	}, error => alert(`Rejected: ${error}`));
 };
 
-//AIzaSyAafHK96EJVPRf0K2ityqqQqMTZxEMOWWw
-//https://www.googleapis.com/youtube/v3/search?key=AIzaSyAafHK96EJVPRf0K2ityqqQqMTZxEMOWWw&type=video&part=snippet&maxResults=15&q=js
-//https://www.googleapis.com/youtube/v3/videos?key=AIzaSyCTWC75i70moJLzyNh3tt4jzCljZcRkU8Y&id=nq4aU9gmZQk,REu2BcnlD34,qbPTdW7KgOg&part=snippet,statistics
-//https://www.youtube.com/watch?v=T5ZkSWTdbb4
-//'use strict';
 function handlingResponse(response, query, data) {
 	let items = JSON.parse(response);
-	//alert(items['kind']);
-	//alert(items['pageInfo']['totalResults']);
-	//alert(items['nextPageToken']);
-	//console.log("data = " + data);
-	//console.log("items['nextPageToken'] = " + items['nextPageToken']);
-	//console.log("response = " + response);
 	if (response) {
 		if (data === null) {
-			console.log("data  in handlingResponse = " + data);
 			data = new __WEBPACK_IMPORTED_MODULE_0__data__["a" /* default */](items['items'], nextPage, totalResults, query);
-			__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__display__["displayPages"])(data);
-			//data.add(items['items'], nextPage);
+			__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__display__["a" /* displayPages */])(data);
 		} else {
 			data.add(items['items'], nextPage, totalResults);
-			__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__display__["updateData"])(data);
+			__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__display__["b" /* updateData */])(data);
 		}
-
-		//displayPages(data);
 	} else {
-		console.log("in handlingResponse: response = null");
-		__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__display__["displayPages"])(null);
+		__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__display__["a" /* displayPages */])(null);
 	}
 }
 
 function createURL(response) {
-	//alert(`I'm from parseResult` + response);
 
 	let items = JSON.parse(response);
-
-	//nextPageToken = items['pageInfo']['totalResults'];
 	nextPage = items['nextPageToken'];
 	totalResults = items['pageInfo']['totalResults'];
-	//alert(nextPage);
 
 	if (totalResults > 0) {
 		let size = items['items'].length;
-		//console.log("count items = " + items['items'].length);
 		let id = items['items'][0]['id']['videoId'];
 		for (let i = 1; i < size; i++) {
 			id += ',' + items['items'][i]['id']['videoId'];
 		}
 
 		let url = 'https://www.googleapis.com/youtube/v3/videos?' + 'key=AIzaSyAafHK96EJVPRf0K2ityqqQqMTZxEMOWWw&' + 'id=' + id + '&' + 'part=snippet,statistics';
-
-		//console.log("id = " + id);
-		//displayPages(items);
 		return url;
 	}
 	return null;
@@ -217,8 +160,6 @@ function httpGet(url) {
 		xhr.send();
 	});
 }
-
-//export search;
 
 /***/ }),
 /* 1 */
@@ -257,10 +198,415 @@ class Data {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-throw new Error("Module build failed: SyntaxError: D:/js/webpack/youtube/display.js: Unexpected token (91:7)\n\n  89 | \t\t   \n  90 | \t\t   \tif(curData.sizePages === 1)\n> 91 | \t\t   \t\tlet src = data.items[i]['snippet']['thumbnails']['default']['url'];\n     | \t\t   \t\t^\n  92 | \t\t   \telse\n  93 | \t\t    \tlet src = data.items[i]['snippet']['thumbnails']['high']['url'];\n  94 | \t\t\t    \n");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__search__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return displayPages; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return updateData; });
+
+
+
+
+let selectedElem;
+let curData;
+let curWidthMin;
+
+function displayPages(data) {
+
+	let width = document.documentElement.clientWidth;
+	if (data) {
+		if (width >= 1080) {
+			data.sizePages = 4;
+			data.sizePagination = 3;
+			curWidthMin = 1080;
+		} else if (width >= 720) {
+			data.sizePages = 3;
+			data.sizePagination = 4;
+			curWidthMin = 720;
+		} else if (width >= 460) {
+			data.sizePages = 2;
+			data.sizePagination = 5;
+			curWidthMin = 460;
+		} else {
+			data.sizePages = 1;
+			data.sizePagination = 7;
+			curWidthMin = 0;
+		}
+		curData = data;
+		paintPages(1, data.sizePages, data);
+
+		if (data.sizePagination * data.sizePages < data.totalResults) {
+			paintPagination(1, data.sizePagination);
+			paintNext();
+		} else {
+			paintPagination(1, Math.ceil(data.totalResults / data.sizePages));
+		}
+
+		let div = document.getElementsByClassName('pagination');
+		div[0].children[0].setAttribute('style', 'background-color:#b2d320');
+		selectedElem = div[0].children[0];
+
+		window.addEventListener("resize", onResize);
+		window.addEventListener("mousedown", onMouseDown);
+		window.addEventListener("mouseup", onMouseUp);
+		window.addEventListener("touchstart", onTouchStart, false);
+		window.addEventListener("touchend", onTouchEnd, false);
+	} else {
+		removePages();
+		removePagination();
+	}
+};
+
+function updateData(data) {
+	curData = data;
+}
+
+function paintPages(start, count, data) {
+	removePages();
+	start = start - 1;
+	let div = document.getElementsByClassName('gridwrapper');
+	let max = count + start;
+	if (start + count > data.totalResults) count = data.totalResults - start;
+	for (let i = start; i < start + count; i++) {
+		if (data.items[i]) {
+			let div1 = document.createElement('div');
+			div1.classList.add('gridbox');
+			div1.classList.add('gridpage');
+			div[0].appendChild(div1);
+
+			let div2 = document.createElement('div');
+			div2.classList.add('page');
+			div1.appendChild(div2);
+
+			//add header-title
+			let h2 = document.createElement('h2');
+			div2.appendChild(h2);
+
+			let title = data.items[i]['snippet']['title'];
+			let href = "https://www.youtube.com/watch?v=" + data.items[i]['id'];
+			let a = document.createElement('a');
+			a.innerHTML = title;
+			a.setAttribute('href', href);
+			a.setAttribute('target', '_blank');
+			h2.appendChild(a);
+
+			let src;
+			if (curData.sizePages === 1) src = data.items[i]['snippet']['thumbnails']['medium']['url'];else src = data.items[i]['snippet']['thumbnails']['high']['url'];
+
+			let img = document.createElement('img');
+			img.setAttribute('src', src);
+			div2.appendChild(img);
+
+			let h3 = document.createElement('h3');
+			let author = data.items[i]['snippet']['channelTitle'];
+			h3.innerHTML = "Author: " + author;
+			div2.appendChild(h3);
+
+			h3 = document.createElement('h3');
+			let published = data.items[i]['snippet']['publishedAt'];
+			h3.innerHTML = "Published at: " + published.substring(0, 10);
+			div2.appendChild(h3);
+
+			h3 = document.createElement('h3');
+			let count = data.items[i]['statistics']['viewCount'];
+			h3.innerHTML = "Count: " + count;
+			div2.appendChild(h3);
+
+			let div3 = document.createElement('div');
+			let description = data.items[i]['snippet']['description'];
+			div3.classList.add('description');
+			div3.innerHTML = description;
+			div2.appendChild(div3);
+		}
+	}
+	curData.curPage = start + 1;
+}
+
+function removePages() {
+	let elems = document.getElementsByClassName('gridpage');
+	if (elems.length) {
+		elems = Array.prototype.slice.call(elems);
+		elems.forEach(function (elem) {
+			elem.remove();
+		});
+	}
+}
+
+function paintPagination(start, count, selected) {
+	removePagination();
+
+	let div = document.getElementsByClassName('gridwrapper');
+
+	let div1 = document.createElement('div');
+	div1.classList.add('gridbox');
+	div1.classList.add('gridpagination');
+	div[0].appendChild(div1);
+
+	let div2 = document.createElement('div');
+	div2.classList.add('pagination');
+	div1.appendChild(div2);
+
+	let a;
+	let pos = 1;
+	for (let i = start; i < start + count; i++) {
+
+		a = document.createElement('a');
+		a.setAttribute('href', '#' + i);
+		a.innerHTML = i;
+		a.value = i;
+		a.pos = pos++;
+		a.addEventListener('click', onPageClick);
+		a.number = i;
+		if (a.pos === selected) a.setAttribute('style', 'background-color: #b2d320');
+		div2.appendChild(a);
+	}
+}
+
+function addPagination(elemValue, elemPos) {
+	let halfPosition = Math.floor(curData.sizePagination / 2) + 1;
+	let needPages = (elemValue + Math.ceil(curData.sizePagination / 2) - 1) * curData.sizePages;
+	let itemsCount = curData.items.length;
+	curData.curPagination = elemValue;
+	// elem > half
+	if (elemPos > halfPosition) {
+		//totalResults > needful
+		if (needPages < curData.totalResults) {
+			if (needPages >= itemsCount) {
+				__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__search__["a" /* default */])(curData.query, curData);
+			}
+			let startPage = (elemValue - 1) * curData.sizePages + 1;
+			paintPages(startPage, curData.sizePages, curData);
+
+			let startPagination = elemValue - Math.floor(curData.sizePagination / 2);
+			paintPagination(startPagination, curData.sizePagination, halfPosition);
+
+			paintNext();
+			paintPrev();
+		} else if (needPages === curData.totalResults) {
+			if (needPages >= itemsCount) {
+				__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__search__["a" /* default */])(curData.query, curData);
+			}
+			let startPage = (elemValue - 1) * curData.sizePages + 1;
+			paintPages(startPage, curData.sizePages, curData);
+
+			let startPagination = elemValue - Math.floor(curData.sizePagination / 2);
+			paintPagination(startPagination, curData.sizePagination, halfPosition);
+
+			removeNext();
+			paintPrev();
+			//totalResults < needful
+		} else {
+			if (curData.totalResults > itemsCount) {
+				__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__search__["a" /* default */])(curData.query, curData);
+			}
+			let startPage = (elemValue - 1) * curData.sizePages + 1;
+			paintPages(startPage, curData.sizePages, curData);
+			paintPagination(elemValue - elemPos + 1, curData.sizePagination, elemPos);
+			removeNext();
+			if (elemValue - elemPos + 1 !== 1) {
+				paintPrev();
+			}
+		}
+	} else {
+		needPages = curData.sizePagination * curData.sizePages;
+		if (needPages > curData.totalResults) {
+			//let sizePagination = Math.ceil(curData.totalResults/curData.sizePages);
+			curData.sizePagination = Math.ceil(curData.totalResults / curData.sizePages);
+		}
+		// elem <= half
+		let diff = halfPosition - elemPos;
+		//1 elem - diff
+		let firstElem = elemValue - elemPos + 1;
+
+		if (firstElem - diff <= 1) {
+			let startPage = (elemValue - 1) * curData.sizePages + 1;
+			paintPages(startPage, curData.sizePages, curData);
+			if (firstElem === 1) {
+				paintPagination(1, curData.sizePagination, elemPos);
+			} else {
+				paintPagination(1, curData.sizePagination, elemPos + 1);
+				removePrev();
+			}
+		} else {
+			let startPage = (elemValue - 1) * curData.sizePages + 1;
+			paintPages(startPage, curData.sizePages, curData);
+			paintPagination(firstElem - diff, curData.sizePagination, elemPos + diff);
+			paintPrev();
+		}
+
+		if (needPages < curData.totalResults) {
+			paintNext();
+		}
+	}
+}
+
+function onPageClick(event) {
+	let elem = event.currentTarget;
+	if (elem !== selectedElem) {
+		elem.setAttribute('style', 'background-color: #b2d320');
+		selectedElem.setAttribute('style', 'background-color: lightblue');
+		addPagination(elem.value, elem.pos);
+		selectedElem = elem;
+	}
+}
+
+function removePagination() {
+	let elems = document.getElementsByClassName('gridpagination');
+	if (elems.length) {
+		elems = Array.prototype.slice.call(elems);
+		elems.forEach(function (elem) {
+			elem.remove();
+		});
+	}
+}
+
+function paintNext() {
+	let div = document.getElementsByClassName('pagination');
+	let a = document.createElement('a');
+	a.setAttribute('href', '#');
+	a.classList.add('next');
+	a.innerHTML = 'next';
+	a.addEventListener('click', onNextClick);
+	div[0].appendChild(a);
+}
+
+function removeNext() {
+	let elems = document.getElementsByClassName('next');
+	if (elems[0]) elems[0].remove();
+}
+
+function onNextClick() {
+	let lastPage = Math.ceil(curData.totalResults / curData.sizePages);
+	if (curData.curPagination < lastPage) {
+		selectedElem.setAttribute('style', 'background-color: lightblue');
+		addPagination(selectedElem.value + 1, selectedElem.pos + 1);
+		let div = document.getElementsByClassName('pagination');
+		let children = div[0].children;
+		let selected;
+		if (children.length) {
+			children = Array.prototype.slice.call(children);
+			children.forEach(function (elem) {
+				if (elem.value === selectedElem.value + 1) {
+					selected = elem;
+					return elem;
+				}
+			});
+		}
+		selectedElem = selected;
+	}
+}
+
+function paintPrev() {
+	let div = document.getElementsByClassName('pagination');
+	let a = document.createElement('a');
+	a.setAttribute('href', '#');
+	a.classList.add('prev');
+	a.innerHTML = 'prev';
+	a.addEventListener('click', onPrevClick);
+	div[0].insertBefore(a, div[0].children[0]);
+}
+
+function removePrev() {
+	let elems = document.getElementsByClassName('prev');
+	if (elems[0]) elems[0].remove();
+}
+
+function onPrevClick() {
+	if (curData.curPagination > 1) {
+		addPagination(selectedElem.value - 1, selectedElem.pos - 1);
+		let div = document.getElementsByClassName('pagination');
+		let children = div[0].children;
+		let selected;
+		if (children.length) {
+			children = Array.prototype.slice.call(children);
+			children.forEach(function (elem) {
+				if (elem.value === selectedElem.value - 1) {
+					selected = elem;
+					return elem;
+				}
+			});
+		}
+		selectedElem = selected;
+	}
+}
+
+function onResize() {
+	let width = document.documentElement.clientWidth;
+	if (width >= 1080) {
+		if (curData.sizePages !== 4) {
+			curData.sizePages = 4;
+			curData.sizePagination = 3;
+			resizePages();
+		}
+	} else if (width >= 720) {
+		if (curData.sizePages !== 3) {
+			curData.sizePages = 3;
+			curData.sizePagination = 4;
+			resizePages();
+		}
+	} else if (width >= 460) {
+		if (curData.sizePages !== 2) {
+			curData.sizePages = 2;
+			curData.sizePagination = 5;
+			resizePages();
+		}
+	} else {
+		if (curData.sizePages !== 1) {
+			curData.sizePages = 1;
+			curData.sizePagination = 7;
+			resizePages();
+		}
+	}
+}
+
+function resizePages() {
+	let value = Math.ceil(curData.curPage / curData.sizePages);
+	let pos = curData.curPage % curData.sizePages;
+	addPagination(value, 1);
+}
+
+let startX;
+let endX;
+
+function onMouseDown(event) {
+	startX = event.clientX;
+}
+
+function onMouseUp(event) {
+	let input = document.getElementById('query');
+	if (input !== event.target) {
+		if (event.clientX - startX > 100) {
+			onPrevClick();
+		}
+
+		if (event.clientX - startX < -100) {
+			onNextClick();
+		}
+	}
+}
+
+function onTouchStart(event) {
+	let touches = event.changedTouches;
+	startX = touches[0].pageX;
+	let input = document.getElementById('query');
+	if (input === touches[0].target) {
+		input.focus();
+	}
+}
+
+function onTouchEnd(event) {
+	let touches = event.changedTouches;
+	if (touches[0].pageX - startX > 100) {
+		onPrevClick();
+	}
+
+	if (touches[0].pageX - startX < -100) {
+		onNextClick();
+	}
+}
+
+
 
 /***/ }),
 /* 3 */
@@ -269,52 +615,22 @@ throw new Error("Module build failed: SyntaxError: D:/js/webpack/youtube/display
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__search__ = __webpack_require__(0);
-//AIzaSyAafHK96EJVPRf0K2ityqqQqMTZxEMOWWw
-//https://www.googleapis.com/youtube/v3/search?key=AIzaSyAafHK96EJVPRf0K2ityqqQqMTZxEMOWWw&type=video&part=snippet&maxResults=15&q=js
-//https://www.googleapis.com/youtube/v3/videos?key=AIzaSyCTWC75i70moJLzyNh3tt4jzCljZcRkU8Y&id=nq4aU9gmZQk,REu2BcnlD34,qbPTdW7KgOg&part=snippet,statistics
-//https://www.youtube.com/watch?v=T5ZkSWTdbb4
-//'use strict';
 
-
-
-//Create container and search field
 
 createContainer();
-//console.log('I am in create');
-/*    let div = document.createElement('div');
-    div.innerHTML = "<strong>"+items['items'][0]['snippet']['publishedAt']+"</strong>";
-    div.style.background = '#909090';
-    div.style.width = '200px';
-    console.log(document.documentElement.clientWidth);
-    div.classList.add('gridcontainer');
-    document.body.appendChild(div);*/
 
 let elem = document.getElementById('search');
-//let searchHandler = require('./search');
 
-
-//elem.addEventListener("click", searchHandler(query));
 
 elem.addEventListener("click", function () {
-    console.log("Кнопка нажата.");
     let query = document.getElementById('query').value;
     let input = document.getElementById('query');
     input.blur();
-    console.log("query.value = " + query);
-    //query.
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__search__["a" /* default */])(query);
 });
 
-//elem.style.background = 'red';
-
-
 function createContainer() {
-    console.log('I am in create');
     let div = document.createElement('div');
-    //div.innerHTML = "<strong>"+items['items'][0]['snippet']['publishedAt']+"</strong>";
-    //div.style.background = '#909090';
-    //div.style.width = '200px';
-    //console.log(document.documentElement.clientWidth);
     div.classList.add('gridcontainer');
     document.body.appendChild(div);
 
@@ -329,9 +645,6 @@ function createContainer() {
     let input = document.createElement('input');
     input.setAttribute('id', 'query');
     input.setAttribute('autofocus', true);
-    //input.setAttribute('onmousedown', 'true');
-    //input.setAttribute('onselectstart', 'true');
-    //input.setAttribute('autofocus', false);
     div3.appendChild(input);
 
     let button = document.createElement('button');
