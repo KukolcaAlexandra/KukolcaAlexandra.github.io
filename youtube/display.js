@@ -381,6 +381,10 @@ let endX;
 
 function onMouseDown(event){
 	startX = event.clientX;
+	let input = document.getElementById('query');
+	if(input === event.target){
+		input.focus();
+	}
 }
 
 function onMouseUp(event){
