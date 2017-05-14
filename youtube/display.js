@@ -443,7 +443,7 @@ function onResize(){
 	//console.log("onResize");
 	let width =  document.documentElement.clientWidth;
 	//console.log("onResize: " + width);
-
+	alert(width);
 	if(width >= 1080){
 		if(curData.sizePages !== 4){
 			console.log(">=1080 " + width);
