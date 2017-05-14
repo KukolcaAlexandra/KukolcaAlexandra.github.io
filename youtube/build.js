@@ -852,6 +852,7 @@ function onMouseMove(event) {
 
 function onTouchStart(event) {
 	startX = event.clientX;
+	alert("touch");
 }
 
 function onTouchEnd(event) {
