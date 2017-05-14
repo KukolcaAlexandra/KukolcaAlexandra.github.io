@@ -293,7 +293,7 @@ function displayPages(data) {
 
 	let width = document.documentElement.clientWidth;
 	//curWidth = width;
-	alert(width);
+	//alert(width);
 	if (data) {
 		if (width >= 1080) {
 			//console.log(">=1080 " + width);
@@ -335,7 +335,7 @@ function displayPages(data) {
 		window.addEventListener("mouseup", onMouseUp);
 		document.addEventListener("mousemove", onMouseMove);
 		window.addEventListener("touchstart", onTouchStart, false);
-		window.addEventListener("touchend", onStartEnd, false);
+		window.addEventListener("touchend", onTouchEnd, false);
 		//let input = document.getElementById('query');
 		//input.addEventListener("mousedown", onInputMouseDown);
 		//console.log('after displayPages');
@@ -716,7 +716,7 @@ function onResize() {
 	//console.log("onResize");
 	let width = document.documentElement.clientWidth;
 	//console.log("onResize: " + width);
-	alert(width);
+	//alert(width);
 	if (width >= 1080) {
 		if (curData.sizePages !== 4) {
 			console.log(">=1080 " + width);
@@ -848,21 +848,27 @@ function onMouseUp(event) {
 
 function onMouseMove(event) {
 	//console.log("onMouseMove " + event.clientX);
+	//console.log("onMouseMove " + event.clientX);
 }
 
 function onTouchStart(event) {
-	startX = event.clientX;
-	alert("touch");
+	let touches = event.changedTouches;
+	//startX = event.clientX;
+	console.log("onTouchStart " + touches[0].pageX);
+	startX = touches[0].pageX;
+	//alert("touch");
 }
 
 function onTouchEnd(event) {
-	if (event.clientX - startX > 100) {
-		console.log("++++++++++++++++ : " + (startX - event.clientX));
+	let touches = event.changedTouches;
+	console.log("onTouchEnd " + touches[0].pageX);
+	if (touches[0].pageX - startX > 100) {
+		console.log("++++++++++++++++ : " + (startX - touches[0].pageX));
 		onPrevClick();
 	}
 
-	if (event.clientX - startX < -100) {
-		console.log("---------------- : " + (startX - event.clientX));
+	if (touches[0].pageX - startX < -100) {
+		console.log("---------------- : " + (startX - touches[0].pageX));
 		onNextClick();
 	}
 }
@@ -910,8 +916,10 @@ let elem = document.getElementById('search');
 elem.addEventListener("click", function () {
     console.log("Кнопка нажата.");
     let query = document.getElementById('query').value;
-
+    let input = document.getElementById('query');
+    input.blur();
     console.log("query.value = " + query);
+    //query.
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__search__["a" /* default */])(query);
 });
 

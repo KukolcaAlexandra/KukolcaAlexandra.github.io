@@ -28,6 +28,7 @@ elem.addEventListener("click", function() {
    	let query = document.getElementById('query').value;
 
    	console.log("query.value = " + query);
+    //query.
    	search(query);
 })
 
@@ -54,7 +55,7 @@ function createContainer(){
 
     let input = document.createElement('input');
     input.setAttribute('id', 'query');
-    input.setAttribute('autofocus', true);
+    //input.setAttribute('autofocus', true);
     //input.setAttribute('onmousedown', 'true');
     //input.setAttribute('onselectstart', 'true');
     //input.setAttribute('autofocus', false);
