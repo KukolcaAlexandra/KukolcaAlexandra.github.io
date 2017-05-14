@@ -23,13 +23,13 @@ function displayPages(data){
 			data.sizePages = 3;
 			data.sizePagination = 4;
 			curWidthMin = 720;
-		} else if(width >= 360){
-			//console.log(">=360 " + width);
+		} else if(width >= 460){
+			//console.log(">=460 " + width);
 			data.sizePages = 2;
 			data.sizePagination = 5;
 			curWidthMin = 460;
 		} else{
-			//console.log("<360 " + width);
+			//console.log("<460 " + width);
 			data.sizePages = 1;
 			data.sizePagination = 7;
 			curWidthMin = 0;
@@ -462,7 +462,7 @@ function onResize(){
 			resizePages();
 			
 		}
-	} else if(width >= 360){
+	} else if(width >= 460){
 		if(curData.sizePages !== 2){
 			console.log(">=460 " + width);
 
