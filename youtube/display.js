@@ -25,7 +25,7 @@ function displayPages(data){
 		} else{
 			data.sizePages = 1;
 			data.sizePagination = 7;
-			curWidthMin = 0;
+			curWidthMin = 450;
 		}
 		curData = data;
 		paintPages(1, data.sizePages, data);
@@ -66,7 +66,6 @@ function paintPages(start, count, data, dir){
 	if((start + count) > data.totalResults)
 		count = data.totalResults-start;
 	//let width =  document.documentElement.clientWidth;
-	//alert(curWidthMin);
 	for(let i=start; i<start+count; i++){
 		if( data.items[i]){
 			let div1 = document.createElement('div');
