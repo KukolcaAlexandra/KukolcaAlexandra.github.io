@@ -71,9 +71,9 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = search;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__data__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__display__ = __webpack_require__(2);
-/* harmony export (immutable) */ __webpack_exports__["a"] = search;
 
 
 
@@ -201,9 +201,9 @@ class Data {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__search__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return displayPages; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return updateData; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__search__ = __webpack_require__(0);
 
 
 
@@ -262,17 +262,39 @@ function updateData(data) {
 	curData = data;
 }
 
-function paintPages(start, count, data) {
+function paintPages(start, count, data, dir) {
+	//alert(curWidthMin);
 	removePages();
 	start = start - 1;
 	let div = document.getElementsByClassName('gridwrapper');
 	let max = count + start;
 	if (start + count > data.totalResults) count = data.totalResults - start;
+	//let width =  document.documentElement.clientWidth;
+	//alert(curWidthMin);
 	for (let i = start; i < start + count; i++) {
 		if (data.items[i]) {
 			let div1 = document.createElement('div');
 			div1.classList.add('gridbox');
 			div1.classList.add('gridpage');
+			/////////////////////////
+			//add animation
+			/////////////////////////
+			if (dir) {
+				div1.style.position = "relative";
+				if (dir > 0) {
+					div1.style.transform = "translate(0px,0px)";
+					div1.style.animation = 'mymoveback 1s';
+				} else {
+					div1.style.transform = "translate(-" + curWidthMin + "px,0px)";
+					div1.style.animation = 'mymove 1s';
+				}
+
+				div1.style.animationTimingFunction = 'ease';
+				div1.style.animationIterationCount = '1';
+				div1.style.animationFillMode = "forwards";
+			}
+			////////////////////////
+
 			div[0].appendChild(div1);
 
 			let div2 = document.createElement('div');
@@ -325,6 +347,28 @@ function paintPages(start, count, data) {
 
 function removePages() {
 	let elems = document.getElementsByClassName('gridpage');
+
+	if (elems.length) {
+		elems = Array.prototype.slice.call(elems);
+		elems.forEach(function (elem) {
+			//elem.remove();
+			//elem.style.background-color = "green";
+			elem.style.position = "relative";
+			elem.style.transform = "translate(-500px,100px)";
+			elem.style.animation = 'mymove 2s';
+			elem.style.animationTimingFunction = 'ease';
+			elem.style.animationIterationCount = '1';
+			elem.style.animationFillMode = "forwards";
+			elem.classList.add('del');
+		});
+	}
+	//setTimeout(remove, 1000);
+	remove();
+}
+
+function remove() {
+	//alert( 'Привет' );
+	let elems = document.getElementsByClassName('del');
 	if (elems.length) {
 		elems = Array.prototype.slice.call(elems);
 		elems.forEach(function (elem) {
@@ -363,11 +407,12 @@ function paintPagination(start, count, selected) {
 	}
 }
 
-function addPagination(elemValue, elemPos) {
+function addPagination(elemValue, elemPos, dir) {
 	let halfPosition = Math.floor(curData.sizePagination / 2) + 1;
 	let needPages = (elemValue + Math.ceil(curData.sizePagination / 2) - 1) * curData.sizePages;
 	let itemsCount = curData.items.length;
 	curData.curPagination = elemValue;
+	//alert(dir);
 	// elem > half
 	if (elemPos > halfPosition) {
 		//totalResults > needful
@@ -376,7 +421,7 @@ function addPagination(elemValue, elemPos) {
 				__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__search__["a" /* default */])(curData.query, curData);
 			}
 			let startPage = (elemValue - 1) * curData.sizePages + 1;
-			paintPages(startPage, curData.sizePages, curData);
+			paintPages(startPage, curData.sizePages, curData, dir);
 
 			let startPagination = elemValue - Math.floor(curData.sizePagination / 2);
 			paintPagination(startPagination, curData.sizePagination, halfPosition);
@@ -388,7 +433,7 @@ function addPagination(elemValue, elemPos) {
 				__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__search__["a" /* default */])(curData.query, curData);
 			}
 			let startPage = (elemValue - 1) * curData.sizePages + 1;
-			paintPages(startPage, curData.sizePages, curData);
+			paintPages(startPage, curData.sizePages, curData, dir);
 
 			let startPagination = elemValue - Math.floor(curData.sizePagination / 2);
 			paintPagination(startPagination, curData.sizePagination, halfPosition);
@@ -401,7 +446,7 @@ function addPagination(elemValue, elemPos) {
 				__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__search__["a" /* default */])(curData.query, curData);
 			}
 			let startPage = (elemValue - 1) * curData.sizePages + 1;
-			paintPages(startPage, curData.sizePages, curData);
+			paintPages(startPage, curData.sizePages, curData, dir);
 			paintPagination(elemValue - elemPos + 1, curData.sizePagination, elemPos);
 			removeNext();
 			if (elemValue - elemPos + 1 !== 1) {
@@ -421,7 +466,7 @@ function addPagination(elemValue, elemPos) {
 
 		if (firstElem - diff <= 1) {
 			let startPage = (elemValue - 1) * curData.sizePages + 1;
-			paintPages(startPage, curData.sizePages, curData);
+			paintPages(startPage, curData.sizePages, curData, dir);
 			if (firstElem === 1) {
 				paintPagination(1, curData.sizePagination, elemPos);
 			} else {
@@ -430,7 +475,7 @@ function addPagination(elemValue, elemPos) {
 			}
 		} else {
 			let startPage = (elemValue - 1) * curData.sizePages + 1;
-			paintPages(startPage, curData.sizePages, curData);
+			paintPages(startPage, curData.sizePages, curData, dir);
 			paintPagination(firstElem - diff, curData.sizePagination, elemPos + diff);
 			paintPrev();
 		}
@@ -443,10 +488,13 @@ function addPagination(elemValue, elemPos) {
 
 function onPageClick(event) {
 	let elem = event.currentTarget;
+	//alert(selectedElem.value);
+	//alert(elem.value);
+	let dir = elem.value - selectedElem.value;
 	if (elem !== selectedElem) {
 		elem.setAttribute('style', 'background-color: #b2d320');
 		selectedElem.setAttribute('style', 'background-color: lightblue');
-		addPagination(elem.value, elem.pos);
+		addPagination(elem.value, elem.pos, dir);
 		selectedElem = elem;
 	}
 }
@@ -480,7 +528,7 @@ function onNextClick() {
 	let lastPage = Math.ceil(curData.totalResults / curData.sizePages);
 	if (curData.curPagination < lastPage) {
 		selectedElem.setAttribute('style', 'background-color: lightblue');
-		addPagination(selectedElem.value + 1, selectedElem.pos + 1);
+		addPagination(selectedElem.value + 1, selectedElem.pos + 1, 1);
 		let div = document.getElementsByClassName('pagination');
 		let children = div[0].children;
 		let selected;
@@ -514,7 +562,7 @@ function removePrev() {
 
 function onPrevClick() {
 	if (curData.curPagination > 1) {
-		addPagination(selectedElem.value - 1, selectedElem.pos - 1);
+		addPagination(selectedElem.value - 1, selectedElem.pos - 1, -1);
 		let div = document.getElementsByClassName('pagination');
 		let children = div[0].children;
 		let selected;
@@ -537,24 +585,28 @@ function onResize() {
 		if (curData.sizePages !== 4) {
 			curData.sizePages = 4;
 			curData.sizePagination = 3;
+			curWidthMin = 1080;
 			resizePages();
 		}
 	} else if (width >= 720) {
 		if (curData.sizePages !== 3) {
 			curData.sizePages = 3;
 			curData.sizePagination = 4;
+			curWidthMin = 720;
 			resizePages();
 		}
 	} else if (width >= 460) {
 		if (curData.sizePages !== 2) {
 			curData.sizePages = 2;
 			curData.sizePagination = 5;
+			curWidthMin = 460;
 			resizePages();
 		}
 	} else {
 		if (curData.sizePages !== 1) {
 			curData.sizePages = 1;
 			curData.sizePagination = 7;
+			curWidthMin = 450;
 			resizePages();
 		}
 	}
