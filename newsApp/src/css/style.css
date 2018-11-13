@@ -21,25 +21,32 @@ body {
   padding-bottom: 120px;
   background-color: #f1f1f1;
 }
+
 .autocomplete {
   position: relative;
   display: inline-block;
   width: 70%;
 }
+
 input {
   border: 1px solid transparent;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   background-color: #fff;
   padding: 10px;
   font-size: 16px;
 }
+
 input[type=text] {
   background-color: #fff;
   width: 100%;
 }
+
 input[type=submit] {
   background-color: DodgerBlue;
   color: #fff;
 }
+
 .autocomplete-items {
   position: absolute;
   border: 1px solid #d4d4d4;
@@ -50,89 +57,108 @@ input[type=submit] {
   left: 0;
   right: 0;
 }
+
 .autocomplete-items div {
   padding: 10px;
   cursor: pointer;
   background-color: #fff; 
   border-bottom: 1px solid #d4d4d4; 
 }
+
 .autocomplete-items div:hover {
   background-color: #e9e9e9; 
 }
+
 .autocomplete-active {
   background-color: DodgerBlue !important; 
   color: #fff; 
 }
+
 .main-container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   width: 100%;
 }
+
 .search-container {
   margin-top: 30px;
   margin-bottom: 30px;
   display: flex;
   justify-content: center;
 }
+
 .news-container {
   width: 100%;
   display: inline-block;
-  border-width: 2px;
   display: flex;
   flex-wrap: wrap;
-  //justify-content: center;
 }
+
 .news-block {
-  //width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 10px;
-  margin: 20px;
+  margin: 10px 15px;
   background-color: #fff;;
 }
+
 #button {
   width: 20%;
   background-color: DodgerBlue;
   height: 40px;
   font-size: 16px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: none;
 }
+
 .title-block {
   display: flex;
   align-items: flex-start;
   flex-grow: 1;
 }
+
 .image {
   width: 100px;
 }
+
 .title {
   display: inline-block;
   margin-top: 0px;
   margin-left: 10px;
 }
+
 .date-block {
   font-size: 12px;
   font-weight: 700;
   margin-left: 10px;
 }
+
 .description-block {
   flex-grow: 10;
 }
+
 .description {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
 .link-block {
   color: DodgerBlue;
   flex-grow: 1;
 }
+
 .link-block a {
   color: DodgerBlue;
 }
+
 header {
   background-image: url(./images/background-latest-news.png);
   height: 200px;
 }
+
 footer {
   height: 100px;
   text-align: center;
@@ -140,18 +166,22 @@ footer {
   background: #000;
   color: #fff;
 }
+
 h1 {
   text-align: center;
   font-size: 40px;
   color: #fff;
   padding-top: 80px;
 }
+
 h2 {
   padding-top: 40px;
 }
+
 h2 a {
   color: #fff;
 }
+
 form {
   height: 40px;
 }
@@ -171,9 +201,15 @@ a:hover {
 a:active {
   text-decoration: underline;
 }
+
 @media only screen and (min-width : 768px) {
+  .news-container {
+    width: 88%;
+    margin: 0 auto;
+  }
   .news-block {
-    //width: 43%;
+    width: 46%;
+    margin: 14px 1.8%;
   }
   h1 {
     font-size: 50px;
@@ -182,11 +218,12 @@ a:active {
 
 @media only screen and (min-width : 992px) {
   .news-container {
-    width: 90%;
+    width: 97%;
     margin: 0 auto;
   }
   .news-block {
-    width: 30%;
+    width: 29.3%;
+    margin: 14px 2%;
   }
   h1 {
     font-size: 90px;
@@ -200,7 +237,7 @@ a:active {
   }
   .news-block {
     width: 30%;
-    margin: 0 1.6%;
+    margin: 16px 1.6%;
   }
   h1 {
     font-size: 90px;
