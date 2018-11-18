@@ -1,4 +1,4 @@
-import { apiKey } from '../settings';
+import apiKey from '../settings';
 
 export const getNewsSources = () => {
   const url = `https://newsapi.org/v2/sources?apiKey=${apiKey}`;

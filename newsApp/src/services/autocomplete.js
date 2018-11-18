@@ -16,7 +16,9 @@ class Autocomplete {
   }
 
   addActive(elem) {
-    if (!elem) return false;
+    if (!elem) {
+      return false;
+    }
     this.removeActive(elem);
     if (this.currentFocus >= elem.length) this.currentFocus = 0;
     if (this.currentFocus < 0) this.currentFocus = (elem.length - 1);
@@ -51,8 +53,8 @@ class Autocomplete {
     }
     this.currentFocus = -1;
     const elemContainer = document.createElement('div');
-    elemContainer.setAttribute('id', `${input.id}autocomplete-list`);
-    elemContainer.setAttribute('class', 'autocomplete-items');
+    elemContainer.id = `${input.id}autocomplete-list`;
+    elemContainer.classList.add('autocomplete-items');
     input.parentNode.appendChild(elemContainer);
     this.data.forEach((dataItem) => {
       if (dataItem.substr(0, value.length).toUpperCase() === value.toUpperCase()) {

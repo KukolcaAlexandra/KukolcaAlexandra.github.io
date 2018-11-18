@@ -174,11 +174,13 @@ h1 {
   padding-top: 80px;
 }
 
-h2 {
+span {
   padding-top: 40px;
+  display: inline-block;
+  font-size: 18px;
 }
 
-h2 a {
+span a {
   color: #fff;
 }
 
