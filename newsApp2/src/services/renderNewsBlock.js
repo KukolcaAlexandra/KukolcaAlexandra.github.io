@@ -16,12 +16,14 @@ const renderNewsBlock = (news) => {
 
   news.forEach((item) => {
     const newsBlock = document.createElement('div');
-    const { urlToImage } = item;
-    const { title } = item;
+    const {
+      title,
+      urlToImage,
+      description,
+      url,
+    } = item;
     const date = new Date(item.publishedAt);
     const displayDate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
-    const { description } = item;
-    const { url } = item;
     newsBlock.classList.add('news-block');
     newsBlock.innerHTML = `
         <div class="title-block">
@@ -32,7 +34,7 @@ const renderNewsBlock = (news) => {
           </div>
         </div>
         <div class="description-block">
-          <div class="description">${description}</div>
+          <p class="description">${description}</p>
         </div>
         <div class="link-block">
           <a href="${url}" target="_blank">read more</a>
