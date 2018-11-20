@@ -1,10 +1,9 @@
 import { getNews } from './newsLoader';
 import renderNewsBlock from './renderNewsBlock';
 
-const addButtonHandler = (button, data, input) => {
-  button.addEventListener('click', () => {
-    getNews(data.get(input.value))
-      .then(renderNewsBlock);
+const addButtonHandler = async (button, data, input) => {
+  button.addEventListener('click', async () => {
+    renderNewsBlock(await getNews(data.get(input.value)));
   });
 };
 

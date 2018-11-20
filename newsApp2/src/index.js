@@ -1,17 +1,6 @@
-import { getNewsSources } from './services/newsLoader';
-import Autocomplete from './services/autocomplete';
-import addButtonHandler from './services/buttonHandler';
-import { getSourceNames, getSourceNamesWithId } from './services/getSourceNames';
+import main from './services/main';
 
 const input = document.getElementById('myInput');
 const button = document.getElementById('button');
 
-getNewsSources()
-  .then((res) => {
-    const autocomplete = new Autocomplete(input, getSourceNames(res));
-    autocomplete.addHandlers();
-    addButtonHandler(button, getSourceNamesWithId(res), input);
-  })
-  .finally(() => {
-    alert('done');
-  });
+main(input, button);

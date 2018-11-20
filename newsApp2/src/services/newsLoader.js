@@ -1,15 +1,15 @@
 import apiKey from '../settings';
 
-export const getNewsSources = () => {
+export const getNewsSources = async () => {
   const url = `https://newsapi.org/v2/sources?apiKey=${apiKey}`;
-  return fetch(url)
-    .then(response => response.json())
-    .then(responseJson => responseJson.sources);
+  const res = await fetch(url);
+  const resJson = await res.json();
+  return resJson.sources;
 };
 
-export const getNews = (source) => {
+export const getNews = async (source) => {
   const url = `https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${apiKey}`;
-  return fetch(url)
-    .then(response => response.json())
-    .then(responseJson => responseJson.articles);
+  const res = await fetch(url);
+  const resJson = await res.json();
+  return resJson.articles;
 };
