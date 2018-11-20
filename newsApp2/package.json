@@ -31,7 +31,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "babel-loader": "^8.0.4"
+    "babel-loader": "^8.0.4",
+    "whatwg-fetch": "^3.0.0"
   },
   "browserslist": [
     "last 1 version",
