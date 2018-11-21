@@ -3,7 +3,8 @@ import renderNewsBlock from './renderNewsBlock';
 
 const addButtonHandler = async (button, data, input) => {
   button.addEventListener('click', async () => {
-    renderNewsBlock(await getNews(data.get(input.value)));
+    const news = await getNews(data.get(input.value));
+    renderNewsBlock(news);
   });
 };
 
