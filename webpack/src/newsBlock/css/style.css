@@ -53,3 +53,46 @@
   .link-block a {
     color: DodgerBlue;
   }
+
+  @media only screen and (min-width : 768px) {
+    .news-container {
+      width: 88%;
+      margin: 0 auto;
+    }
+    .news-block {
+      width: 46%;
+      margin: 14px 1.8%;
+    }
+    h1 {
+      font-size: 50px;
+    }
+  }
+  
+  @media only screen and (min-width : 992px) {
+    .news-container {
+      width: 97%;
+      margin: 0 auto;
+    }
+    .news-block {
+      width: 29.3%;
+      margin: 14px 2%;
+    }
+    h1 {
+      font-size: 90px;
+    }
+  }
+  
+  @media only screen and (min-width : 1200px) {
+    .news-container {
+      width: 80%;
+      margin: 0 auto;
+    }
+    .news-block {
+      width: 30%;
+      margin: 16px 1.6%;
+    }
+    h1 {
+      font-size: 90px;
+    }
+  }
+  

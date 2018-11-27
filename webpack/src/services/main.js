@@ -1,6 +1,6 @@
 import { getNewsSources } from './newsLoader';
 import Autocomplete from './autocomplete';
-import addButtonHandler from './buttonHandler';
+import addButtonHandler from '../services/buttonHandler';
 import { getSourceNames, getSourceNamesWithId } from './getSourceNames';
 
 const main = async (input, button) => {

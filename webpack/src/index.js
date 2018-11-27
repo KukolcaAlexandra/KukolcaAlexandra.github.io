@@ -1,6 +1,6 @@
 import main from './services/main';
 import config from './configs/config.json';
-import './css/style.css';
+import './css/style.less';
 
 console.log(config);
 

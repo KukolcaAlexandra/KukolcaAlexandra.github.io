@@ -1,4 +1,5 @@
 import months from '../consts/months';
+import './css/style.css';
 
 const removeNewsBlocks = () => {
   const newsContainer = document.querySelector('.news-container');
@@ -8,10 +9,12 @@ const removeNewsBlocks = () => {
   });
 };
 
-const renderNewsBlock = (news) => {
+export const renderNewsBlock = (news) => {
   const newsContainer = document.querySelector('.news-container');
   const items = [];
+
   removeNewsBlocks();
+
   if (news && news.length) {
     news.forEach((item) => {
       const newsBlock = document.createElement('div');
@@ -45,5 +48,3 @@ const renderNewsBlock = (news) => {
     });
   }
 };
-
-export default renderNewsBlock;

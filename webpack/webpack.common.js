@@ -1,8 +1,11 @@
 const path = require('path');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: ['whatwg-fetch', '@babel/polyfill', './src/index.js'],
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+  ],
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: 'dist/',
@@ -12,7 +15,7 @@ module.exports = {
   },
   resolveLoader: {
     modules: [
-      'node_modules',
+      path.resolve(__dirname, 'node_modules'),
       path.resolve(__dirname, 'loaders'),
     ],
   },
@@ -28,6 +31,16 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.less$/,
+        use: [{
+          loader: 'style-loader',
+        }, {
+          loader: 'css-loader',
+        }, {
+          loader: 'less-loader',
+        }],
       },
       {
         test: /\.(png|jpg|gif)$/i,
@@ -47,13 +60,5 @@ module.exports = {
         ],
       },
     ],
-  },
-
-  plugins: [
-  ],
-
-  devServer: {
-    host: 'localhost',
-    port: 8080,
   },
 };

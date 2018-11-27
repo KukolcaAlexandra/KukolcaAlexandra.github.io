@@ -1,5 +1,3 @@
-console.log('hello');
-
 const months = [
   'january',
   'february',
