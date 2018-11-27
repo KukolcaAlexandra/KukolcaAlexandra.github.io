@@ -1,0 +1,133 @@
+@color: #fff;
+@background_color_1: #f1f1f1;
+@background_color_2: #fff;
+@background_color_3: DodgerBlue;
+@background_color_4: #e9e9e9;
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+html {
+	height: 100%;
+}
+body {
+	font: 16px Arial;
+	height: 100%;
+}
+.content {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	margin-bottom: -100px;
+	padding-bottom: 120px;
+	background-color: @background_color_1;
+}
+.autocomplete {
+	position: relative;
+	display: inline-block;
+	width: 70%;
+}
+input {
+	border: 1px solid transparent;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	background-color: @background_color_2;
+	padding: 10px;
+	font-size: 16px;
+}
+input[type=text] {
+	background-color: @background_color_2;
+	width: 100%;
+}
+input[type=submit] {
+	background-color: @background_color_3;
+	color: @color;
+}
+.autocomplete-items {
+	position: absolute;
+	border: 1px solid #d4d4d4;
+	border-bottom: none;
+	border-top: none;
+	z-index: 99;
+	top: 100%;
+	left: 0;
+	right: 0;
+	div {
+		padding: 10px;
+		cursor: pointer;
+		background-color: @background_color_2;
+		border-bottom: 1px solid #d4d4d4;
+		&:hover {
+			background-color: @background_color_4;
+		}
+	}
+}
+.autocomplete-active {
+	background-color: @background_color_3 !important;
+	color: @color;
+}
+.main-container {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	width: 100%;
+}
+.search-container {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	display: flex;
+	justify-content: center;
+}
+#button {
+	width: 20%;
+	background-color: @background_color_3;
+	height: 40px;
+	font-size: 16px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border: none;
+}
+header {
+	background-image: url('./images/background-latest-news.png');
+	height: 200px;
+}
+footer {
+	height: 100px;
+	text-align: center;
+	font-size: 14px;
+	background: #000;
+	color: @color;
+}
+h1 {
+	text-align: center;
+	font-size: 40px;
+	color: @color;
+	padding-top: 80px;
+}
+span {
+	padding-top: 40px;
+	display: inline-block;
+	font-size: 18px;
+	a {
+		color: @color;
+	}
+}
+form {
+	height: 40px;
+}
+a {
+	&:link {
+		text-decoration: none;
+	}
+	&:visited {
+		text-decoration: none;
+	}
+	&:hover {
+		text-decoration: underline;
+	}
+	&:active {
+		text-decoration: underline;
+	}
+}
