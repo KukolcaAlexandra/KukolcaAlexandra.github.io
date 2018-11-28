@@ -1,22 +1,34 @@
 module.exports = function(source, map) {
   let obj = JSON.parse(source);
-  console.log('source');
+  console.log('my loader');
+  console.log('source:');
   console.log(source);
-  console.log('obj');
-  console.dir(obj);
-  for (key in obj) {
-    console.log(key);
-    if(obj[key].search(/\d/g) !== -1){
-      console.log('should delete');
-      delete obj[key];
+  
+  function eachRecursive(obj) {
+    for (let key in obj) {
+      if (typeof obj[key] === "object" && obj[key] !== null) {
+        eachRecursive(obj[key]);
+      }
+      else {
+        if(obj[key].search(/\d/g) !== -1) {
+          if (obj instanceof Array) {
+            obj.splice(key);
+          } else {
+            delete obj[key];
+          }
+        }
+      }
     }
   }
-  console.log(obj);
+
+  eachRecursive(obj);
+
   const json = JSON.stringify(obj);
+  console.log('handled source');
   console.log(json);
   this.callback(
     null,
-    json,//source.replace(/\d/g, ''),
+    json,
     map
   );
 };
