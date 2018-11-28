@@ -1,5 +1,5 @@
 import months from '../consts/months';
-import './css/style.css';
+//import './css/style.css';
 
 const removeNewsBlocks = () => {
   const newsContainer = document.querySelector('.news-container');
