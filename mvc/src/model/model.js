@@ -13,9 +13,9 @@ class Model {
     this.subscribe = this.subscribe.bind(this);
   }
   
-  publish(event, args) {
+  publish(event, ...args) {
     console.log('publish');
-    console.log(this.events);
+    console.log(args);
     if (!this.events[event]) {
       return false;
     }
@@ -42,40 +42,35 @@ class Model {
   }
 
   async getSource() {
-    console.log('load source');
     const url = `https://newsapi.org/v2/sources?apiKey=${apiKey}`;
-    //const res = await this.getMethod(url); //this.getMethod.get(url);
     const res = await this.getInstance.get(url);
-    if (res.status !== 'ok') {
-      console.log('error of loading data');
+    console.log(res);
+    if (res.status === 'ok') {
+      const sourceNames = getSourceNames(res.sources);
+      this.sourceNamesWithId = getSourceNamesWithId(res.sources);
+      this.publish('newsSource', sourceNames);
+      //console.log('error of loading data');
+      //console.log(res);
+    } else if (res.status === 'error') {
+      this.publish('error', res.message);
     }
-    //console.log(res);
-    const sourceNames = getSourceNames(res.sources);
-    this.sourceNamesWithId = getSourceNamesWithId(res.sources);
-    //console.log('this.sourceNamesWithId');
-    //console.log(this.sourceNamesWithId);
-    this.publish('newsSource', sourceNames);
+    //const sourceNames = getSourceNames(res.sources);
+    //this.sourceNamesWithId = getSourceNamesWithId(res.sources);
+    //this.publish('newsSource', sourceNames);
   }
 
   async getNews(source) {
     console.log('get news');
-    //console.log('source');
-    //console.log(source);
-    //console.log('this.sourceNamesWithId');
-    //console.log(this.sourceNamesWithId);
-    const sourceCode = this.sourceNamesWithId.get(source);
-    //console.log(sourceCode);
+    const sourceCode = this.sourceNamesWithId.get(source) ? this.sourceNamesWithId.get(source) : source;
     const url = `https://newsapi.org/v2/top-headlines?sources=${sourceCode}&apiKey=${apiKey}`;
-    //const res = await this.getMethod(url); //this.getMethod.get(url);
-    //const res = await this.getInstance.get(url);
     const res = await this.getInstance.get(url);
-    if (res.status !== 'ok') {
-      console.log('error of loading data');
+    console.log(res);
+    if (res.status === 'ok') {
+      this.publish('news', res.articles);
+    } else if (res.status === 'error') {
+      this.publish('error', 'Error of loading data', res.message);
     }
-    //console.log(res);
-    this.publish('news', res.article);
   }
 }
   
 export default Model;
-  
