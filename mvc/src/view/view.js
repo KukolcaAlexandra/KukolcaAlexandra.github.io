@@ -21,7 +21,7 @@ class View {
     //this.button = document.getElementById('button');
     //this.button.onclick = this.handler;
     //this.input = document.getElementById('myInput');
-    console.log(this.input);
+    //console.log(this.input);
   }
 
 
@@ -56,8 +56,8 @@ class View {
 
   renderNewsSource(event, newsSources) {
     console.log('renderNewsSource');
-    console.log(event);
-    console.log(newsSources);
+    //console.log(event);
+    //console.log(newsSources);
     this.input = document.getElementById('myInput');
     this.button = document.getElementById('button');
     const autocomplete = new Autocomplete(this.input, newsSources);
@@ -74,7 +74,7 @@ class View {
   handler() {
     //alert('call');
     //console.log('param');
-    console.log(this.input.value);
+    //console.log(this.input.value);
     this.controller.handleEvent('click', this.model, this.input.value);
   }
 }

@@ -7,8 +7,8 @@ class Model {
     this.events = {};
     this.subId = -1;
     this.requestFactory = new RequestFactory();
-    this.getMethod = this.requestFactory.createRequest();
-    //model.events = this.events.bind(this);
+    this.getInstance = this.requestFactory.createRequest('get');
+    this.postInstance = this.requestFactory.createRequest('post');
     this.publish = this.publish.bind(this);
     this.subscribe = this.subscribe.bind(this);
   }
@@ -44,32 +44,35 @@ class Model {
   async getSource() {
     console.log('load source');
     const url = `https://newsapi.org/v2/sources?apiKey=${apiKey}`;
-    const res = await this.getMethod.get(url);
+    //const res = await this.getMethod(url); //this.getMethod.get(url);
+    const res = await this.getInstance.get(url);
     if (res.status !== 'ok') {
       console.log('error of loading data');
     }
-    console.log(res);
+    //console.log(res);
     const sourceNames = getSourceNames(res.sources);
     this.sourceNamesWithId = getSourceNamesWithId(res.sources);
-    console.log('this.sourceNamesWithId');
-    console.log(this.sourceNamesWithId);
+    //console.log('this.sourceNamesWithId');
+    //console.log(this.sourceNamesWithId);
     this.publish('newsSource', sourceNames);
   }
 
   async getNews(source) {
     console.log('get news');
-    console.log('source');
-    console.log(source);
-    console.log('this.sourceNamesWithId');
-    console.log(this.sourceNamesWithId);
+    //console.log('source');
+    //console.log(source);
+    //console.log('this.sourceNamesWithId');
+    //console.log(this.sourceNamesWithId);
     const sourceCode = this.sourceNamesWithId.get(source);
-    console.log(sourceCode);
+    //console.log(sourceCode);
     const url = `https://newsapi.org/v2/top-headlines?sources=${sourceCode}&apiKey=${apiKey}`;
-    const res = await this.getMethod.get(url);
+    //const res = await this.getMethod(url); //this.getMethod.get(url);
+    //const res = await this.getInstance.get(url);
+    const res = await this.getInstance.get(url);
     if (res.status !== 'ok') {
       console.log('error of loading data');
     }
-    console.log(res);
+    //console.log(res);
     this.publish('news', res.article);
   }
 }
