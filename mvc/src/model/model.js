@@ -13,7 +13,6 @@ class Model {
 
     this.publish = this.publish.bind(this);
     this.subscribe = this.subscribe.bind(this);
-    this.header = 'Error of loading data';
   }
   
   publish(event, ...args) {
