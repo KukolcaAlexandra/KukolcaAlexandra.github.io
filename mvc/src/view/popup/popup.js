@@ -1,4 +1,4 @@
-import './css/style.less';
+import './less/style.less';
 
 class Popup {
   constructor() {
