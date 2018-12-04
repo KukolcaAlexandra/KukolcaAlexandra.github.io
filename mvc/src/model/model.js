@@ -6,9 +6,11 @@ class Model {
   constructor() {
     this.events = {};
     this.subId = -1;
+    this.header = 'Error of loading data';
     this.requestFactory = new RequestFactory();
     this.getInstance = this.requestFactory.createRequest('get');
     this.postInstance = this.requestFactory.createRequest('post');
+
     this.publish = this.publish.bind(this);
     this.subscribe = this.subscribe.bind(this);
     this.header = 'Error of loading data';
