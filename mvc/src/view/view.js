@@ -1,4 +1,4 @@
-import '../../css/style.less';
+import '../../less/style.less';
 import Autocomplete from './autocomplete';
 
 class View {
@@ -60,7 +60,7 @@ class View {
 
   async renderNews(event, args) {
     const render = await import('./newsBlock/renderNewsBlock' /* webpackChunkName: 'renderNewsBlock' */);
-    await import('./newsBlock/css/style.less' /* webpackChunkName: 'newsBlockStyle' */);
+    await import('./newsBlock/less/style.less' /* webpackChunkName: 'newsBlockStyle' */);
     render.renderNewsBlock(args[0]);
   }
 
