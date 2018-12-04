@@ -11,11 +11,10 @@ class Model {
     this.postInstance = this.requestFactory.createRequest('post');
     this.publish = this.publish.bind(this);
     this.subscribe = this.subscribe.bind(this);
+    this.header = 'Error of loading data';
   }
   
   publish(event, ...args) {
-    console.log('publish');
-    console.log(args);
     if (!this.events[event]) {
       return false;
     }
@@ -31,46 +30,40 @@ class Model {
   }
   
   subscribe(event, func) {
-    console.log('subscribe');
     if (!this.events[event]) {
       this.events[event] = [];
     }
   
     const token = (++this.subId).toString();
-    this.events[event].push({token, func});
+    this.events[event].push({ token, func });
     return token;
   }
 
   async getSource() {
     const url = `https://newsapi.org/v2/sources?apiKey=${apiKey}`;
     const res = await this.getInstance.get(url);
-    console.log(res);
     if (res.status === 'ok') {
       const sourceNames = getSourceNames(res.sources);
       this.sourceNamesWithId = getSourceNamesWithId(res.sources);
       this.publish('newsSource', sourceNames);
-      //console.log('error of loading data');
-      //console.log(res);
     } else if (res.status === 'error') {
-      this.publish('error', res.message);
+      const data = [this.header, res.message];
+      this.publish('error', data);
     }
-    //const sourceNames = getSourceNames(res.sources);
-    //this.sourceNamesWithId = getSourceNamesWithId(res.sources);
-    //this.publish('newsSource', sourceNames);
   }
 
   async getNews(source) {
-    console.log('get news');
     const sourceCode = this.sourceNamesWithId.get(source) ? this.sourceNamesWithId.get(source) : source;
     const url = `https://newsapi.org/v2/top-headlines?sources=${sourceCode}&apiKey=${apiKey}`;
     const res = await this.getInstance.get(url);
-    console.log(res);
     if (res.status === 'ok') {
       this.publish('news', res.articles);
     } else if (res.status === 'error') {
-      this.publish('error', 'Error of loading data', res.message);
+      
+      const data = [this.header, res.message];
+      this.publish('error', ...data);
     }
   }
 }
-  
+
 export default Model;

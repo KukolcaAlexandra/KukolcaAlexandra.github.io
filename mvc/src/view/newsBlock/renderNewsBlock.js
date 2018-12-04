@@ -8,7 +8,7 @@ const removeNewsBlocks = () => {
   });
 };
 
-export const renderNewsBlock = (news) => {
+const renderNewsBlock = (news) => {
   const newsContainer = document.querySelector('.news-container');
   const items = [];
 
@@ -47,3 +47,5 @@ export const renderNewsBlock = (news) => {
     });
   }
 };
+
+export { renderNewsBlock };

@@ -2,8 +2,7 @@ import Popup from './popup/popup';
 
 class Singleton {
   constructor() {
-    if(!Singleton.instance){
-      //this.data = 'hello';
+    if (!Singleton.instance) {
       this.popup = new Popup();
       Singleton.instance = this;
     }

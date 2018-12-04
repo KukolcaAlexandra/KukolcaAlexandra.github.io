@@ -9,9 +9,8 @@ class RequestFactory {
       get(target, propKey, receiver) {
         const origMethod = target[propKey];
         return function (...args) {
-          let result = origMethod.apply(this, args);
-          console.log(`Proxy:${target.type} ${propKey} request with url = ${args[0]}`);
-          return result;
+          console.log(`Proxy: ${propKey} request with url = ${args[0]}`);
+          return origMethod.apply(this, args);
         };
       }
     };
@@ -27,7 +26,7 @@ class RequestFactory {
         this.proxy = this.traceRequestCalls(new Post());
         break;
       case 'put':
-      this.proxy = this.traceRequestCalls(new Put());
+        this.proxy = this.traceRequestCalls(new Put());
         break;
       default: 
         this.proxy = this.traceRequestCalls(new Get());

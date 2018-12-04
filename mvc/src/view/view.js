@@ -1,15 +1,10 @@
 import '../../css/style.less';
 import Autocomplete from './autocomplete';
-//import Singleton from './singleton';
 
 class View {
   constructor(model, controller) {
     this.model = model;
     this.controller = controller;
-    // this.model.subscribe('error', this.render);
-    //this.controller.handleEvent = this.controller.handleEvent.bind(this);
-    //this.call = this.call.bind(this);
-    //this.handler = this.handler.bind(this);
     this.renderNewsSource = this.renderNewsSource.bind(this);
     this.renderNews = this.renderNews.bind(this);
     this.renderPopup = this.renderPopup.bind(this);
@@ -21,10 +16,6 @@ class View {
     this.model.subscribe('newsSource', this.renderNewsSource);
     this.model.subscribe('news', this.renderNews);
     this.model.subscribe('error', this.renderPopup);
-    //this.button = document.getElementById('button');
-    //this.button.onclick = this.handler;
-    //this.input = document.getElementById('myInput');
-    //console.log(this.input);
   }
 
 
@@ -58,9 +49,6 @@ class View {
   }
 
   renderNewsSource(event, newsSources) {
-    console.log('renderNewsSource');
-    //console.log(event);
-    //console.log(newsSources);
     this.input = document.getElementById('myInput');
     this.button = document.getElementById('button');
     const autocomplete = new Autocomplete(this.input, newsSources[0]);
