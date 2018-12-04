@@ -70,31 +70,16 @@ class View {
     });
   }
 
-  renderNews(event, news) {
-    console.log('renderNewsBlock');
-    import('./newsBlock/renderNewsBlock' /* webpackChunkName: 'renderNewsBlock' */)
-      .then(async (render) => {
-        import('./newsBlock/css/style.less' /* webpackChunkName: 'newsBlockStyle' */);
-          render.renderNewsBlock(news[0]);
-      });
+  async renderNews(event, args) {
+    const render = await import('./newsBlock/renderNewsBlock' /* webpackChunkName: 'renderNewsBlock' */);
+    await import('./newsBlock/css/style.less' /* webpackChunkName: 'newsBlockStyle' */);
+    render.renderNewsBlock(args[0]);
   }
 
-  renderPopup(event, args) {
-    //this.controller.handleEvent('click', this.model, this.input.value);
-    console.log('render popup');
-    console.log(args[0]);
-    console.log(args[1]);
-    import('./singleton' /* webpackChunkName: 'singleton' */)
-      .then((module) => {
-        console.log(module);
-        const single = new module.Singleton();
-        single.popup.show(args[0], args[1]);
-      })
-    /*const singleton1 = new Singleton();
-    const singleton2= new Singleton();
-    console.log(singleton1);
-    console.log(singleton2);
-    console.log(singleton1 === singleton2);*/
+  async renderPopup(event, args) {
+    const module = await import('./singleton' /* webpackChunkName: 'singleton' */);
+    const single = new module.Singleton();
+    single.popup.show(args[0], args[1]);
   }
 }
 
