@@ -28,7 +28,7 @@ class Controller {
   }
 
   async getNews(source) {
-    const sourceCode = this.model.sourceNamesWithId.get(source) ? this.model.sourceNamesWithId.get(source) : source;
+    const sourceCode = this.model.getSourceNames().get(source) ? this.model.getSourceNames().get(source) : source;
     const url = `https://newsapi.org/v2/top-headlines?sources=${sourceCode}&apiKey=${apiKey}`;
     const res = await this.getInstance.get(url);
     this.model.updateNews(res);

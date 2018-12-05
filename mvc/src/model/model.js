@@ -53,6 +53,10 @@ class Model {
       this.publish('error', ...data);
     }
   }
+
+  getSourceNames() {
+    return this.sourceNamesWithId;
+  }
 }
 
 export default Model;
