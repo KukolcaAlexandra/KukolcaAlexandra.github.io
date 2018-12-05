@@ -4,8 +4,8 @@ import Controller from './controller/controller';
 
 const app = () => {
   const model = new Model();
-  const controller = new Controller();
-  const view = new View(model, controller);
+  const controller = new Controller(model);
+  const view = new View(controller);
   view.init();
 }
 
