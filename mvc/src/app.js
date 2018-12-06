@@ -5,7 +5,7 @@ import Controller from './controller/controller';
 const app = () => {
   const model = new Model();
   const controller = new Controller(model);
-  const view = new View(controller);
+  const view = new View(model, controller);
   view.init();
 }
 

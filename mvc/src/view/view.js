@@ -2,8 +2,9 @@ import '../../less/style.less';
 import Autocomplete from './autocomplete';
 
 class View {
-  constructor(controller) {
+  constructor(model, controller) {
     this.controller = controller;
+    this.model = model;
     this.renderNewsSource = this.renderNewsSource.bind(this);
     this.renderNews = this.renderNews.bind(this);
     this.renderPopup = this.renderPopup.bind(this);
@@ -12,9 +13,9 @@ class View {
   init() {
     this.renderMain();
     this.controller.handleEvent('loadSource');
-    this.controller.subscribe('newsSource', this.renderNewsSource);
-    this.controller.subscribe('news', this.renderNews);
-    this.controller.subscribe('error', this.renderPopup);
+    this.model.subscribe('newsSource', this.renderNewsSource);
+    this.model.subscribe('news', this.renderNews);
+    this.model.subscribe('error', this.renderPopup);
   }
 
 
